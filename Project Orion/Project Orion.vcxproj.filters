@@ -24,6 +24,9 @@
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Orion.hpp">
@@ -36,6 +39,9 @@
       <Filter>Header Files\Orion</Filter>
     </ClInclude>
     <ClInclude Include="Types.hpp">
+      <Filter>Header Files\Orion</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.hpp">
       <Filter>Header Files\Orion</Filter>
     </ClInclude>
   </ItemGroup>
