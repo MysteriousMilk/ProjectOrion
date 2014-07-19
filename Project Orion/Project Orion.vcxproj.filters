@@ -16,15 +16,30 @@
     <Filter Include="Header Files\Orion">
       <UniqueIdentifier>{75e8d8f9-1a4f-400f-aaba-bee489dc896b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Orion">
+      <UniqueIdentifier>{a154f610-50cd-40a7-9f2e-7017841a126d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Orion</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Source Files\Orion</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\Orion</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Orion</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Orion</Filter>
+    </ClCompile>
+    <ClCompile Include="OrionGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -43,6 +58,24 @@
     </ClInclude>
     <ClInclude Include="Game.hpp">
       <Filter>Header Files\Orion</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.hpp">
+      <Filter>Header Files\Orion</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableEntity.hpp">
+      <Filter>Header Files\Orion</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.hpp">
+      <Filter>Header Files\Orion</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.hpp">
+      <Filter>Header Files\Orion</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.hpp">
+      <Filter>Header Files\Orion</Filter>
+    </ClInclude>
+    <ClInclude Include="OrionGame.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

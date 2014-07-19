@@ -158,14 +158,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="OrionGame.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrawableEntity.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Layer.hpp" />
     <ClInclude Include="Orion.hpp" />
+    <ClInclude Include="OrionGame.hpp" />
+    <ClInclude Include="Projectile.hpp" />
     <ClInclude Include="ResourceHolder.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
+    <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="Types.hpp" />
   </ItemGroup>
   <ItemGroup>

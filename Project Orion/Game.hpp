@@ -2,40 +2,40 @@
 #define _GAME_HPP_
 
 #include <SFML/Graphics.hpp>
+#include "Orion.hpp"
 
-class Game : private sf::NonCopyable
+using namespace std;
+
+namespace Orion
 {
-public:
-	Game();
-	void					Run();
+	class Game : private sf::NonCopyable
+	{
+	public:
+		Game(const sf::Vector2i&);
+		void					Run();
 
 
-private:
-	void					ProcessEvents();
-	void					Update(sf::Time elapsedTime);
-	void					Render();
+	private:
+		void					ProcessEvents();
+		virtual void			Update(sf::Time elapsedTime) = 0;
+		virtual void			Render() = 0;
 
-	void					UpdateStatistics(sf::Time elapsedTime);
-	void					Input(sf::Keyboard::Key key, bool isPressed);
+		void					UpdateStatistics(sf::Time elapsedTime);
+		virtual void			Input(sf::Keyboard::Key key, bool isPressed) = 0;
 
-private:
-	static const sf::Time	TimePerFrame;
+	protected:
+		sf::RenderWindow		mWindow;
 
-	sf::RenderWindow		mWindow;
-	sf::Font				mFont;
-	sf::Text				mStatisticsText;
-	sf::Time				mStatisticsUpdateTime;
-	sf::Vector2i			mResolution;
-	sf::Sprite				background;
-	sf::Sprite				planet;
-	sf::Sprite				enemy;
-	sf::Sprite				player;
+	private:
+		static const sf::Time	TimePerFrame;
 
-	std::size_t				mStatisticsNumFrames;
-	bool					mIsMovingUp;
-	bool					mIsMovingDown;
-	bool					mIsMovingRight;
-	bool					mIsMovingLeft;
-};
+		sf::Font				mFont;
+		sf::Text				mStatisticsText;
+		sf::Time				mStatisticsUpdateTime;
+		sf::Vector2i			mResolution;
+
+		std::size_t				mStatisticsNumFrames;
+	};
+}
 
 #endif // _GAME_HPP_

@@ -9,13 +9,11 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include "Orion.hpp"
-
-using namespace Orion::Resources;
+#include "OrionGame.hpp"
 
 int main()
 {
-	Game game;
+	OrionGame game(sf::Vector2i(1280, 720));
 	game.Run();
 
 	return 0;
