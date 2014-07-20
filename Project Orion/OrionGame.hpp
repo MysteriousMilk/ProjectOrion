@@ -1,6 +1,7 @@
 #ifndef _ORIONGAME_HPP_
 #define _ORIONGAME_HPP_
 
+#include "UIManager.hpp"
 #include "Game.hpp"
 
 using namespace Orion;
@@ -16,6 +17,7 @@ public:
 	void Render();
 
 private:
+	UIManager UserInterface;
 	shared_ptr<Sprite> player;
 	shared_ptr<Scene> battleScene;
 };

@@ -5,6 +5,11 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 	// load textures
 	try
 	{
+		// ui
+		ResourceManager::getInstance().Textures.load("ToolbarLeft", "ui/toolbar_left.png");
+		ResourceManager::getInstance().Textures.load("ToolbarRight", "ui/toolbar_right.png");
+		ResourceManager::getInstance().Textures.load("ToolbarCenter", "ui/toolbar_center.png");
+
 		ResourceManager::getInstance().Textures.load("background", "background1.jpg");
 		ResourceManager::getInstance().Textures.load("planet", "planet.png");
 		ResourceManager::getInstance().Textures.load("player", "player.png");
@@ -23,20 +28,20 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 	background->SetZOrder(0);
 
 	auto planet = make_shared<Sprite>("planet");
-	planet->SetPosition(sf::Vector2f(1000, 550));
+	planet->SetPosition(sf::Vector2f(resolution.x / 2, 650));
 	planet->SetOrigin(sf::Vector2f(planet->GetWidth() / 2, planet->GetHeight() / 2));
 	planet->SetZOrder(1);
 
 	auto enemy = make_shared<Sprite>("enemy");
 	enemy->SetOrigin(sf::Vector2f(enemy->GetWidth() / 2, enemy->GetHeight() / 2));
-	enemy->SetPosition(sf::Vector2f(resolution.x - 150, resolution.y / 2));
+	enemy->SetPosition(sf::Vector2f(resolution.x - 175, resolution.y / 2));
 	enemy->SetRotation(-90.0f);
 	enemy->SetScale(0.8f, 0.8f);
 	enemy->SetZOrder(2);
 
 	player = make_shared<Sprite>("player");
 	player->SetOrigin(sf::Vector2f(player->GetWidth() / 2, player->GetHeight() / 2));
-	player->SetPosition(sf::Vector2f(160, resolution.y / 2));
+	player->SetPosition(sf::Vector2f(175, resolution.y / 2));
 	player->SetRotation(90.0f);
 	player->SetZOrder(3);
 
@@ -48,6 +53,12 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 
 	battleScene = make_shared<Scene>();
 	battleScene->Add(layer);
+
+	auto ctrl = make_shared<Quickbar>(10);
+	ctrl->SetPosition(sf::Vector2f(15, 500));
+	ctrl->SetSize(sf::Vector2f(32, 32));
+	ctrl->SetColor(sf::Color(102, 204, 204, 220));
+	UserInterface.Add(ctrl);
 }
 
 void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
@@ -62,6 +73,7 @@ void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
 			projectile->SetRotation(player->GetRotation());
 			projectile->SetScale(0.5f, 0.5f);
 			projectile->SetVelocity(sf::Vector2f(1000.0f, 0.0f));
+			projectile->SetColor(sf::Color(255, 255, 255, 200));
 			projectile->SetZOrder(50);
 			battleScene->Add(projectile);
 		}
@@ -71,11 +83,13 @@ void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
 void OrionGame::Update(sf::Time elapsedTime)
 {
 	battleScene->Update(elapsedTime);
+	UserInterface.Update();
 }
 
 void OrionGame::Render()
 {
 	mWindow.clear();
 	battleScene->Draw(mWindow);
+	UserInterface.Draw(mWindow);
 	mWindow.display();
 }
