@@ -177,6 +177,7 @@
     <ClInclude Include="OrionGame.hpp" />
     <ClInclude Include="Projectile.hpp" />
     <ClInclude Include="Quickbar.hpp" />
+    <ClInclude Include="QuickbarItem.hpp" />
     <ClInclude Include="ResourceHolder.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Scene.hpp" />

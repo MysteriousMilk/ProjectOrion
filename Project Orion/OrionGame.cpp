@@ -15,6 +15,7 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 		ResourceManager::getInstance().Textures.load("player", "player.png");
 		ResourceManager::getInstance().Textures.load("enemy", "enemy.png");
 		ResourceManager::getInstance().Textures.load("plasma", "plasma.png");
+		ResourceManager::getInstance().Textures.load("rocket", "rocket.png");
 	}
 	catch (std::runtime_error& e)
 	{
@@ -59,6 +60,11 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 	ctrl->SetSize(sf::Vector2f(32, 32));
 	ctrl->SetColor(sf::Color(102, 204, 204, 220));
 	UserInterface.Add(ctrl);
+
+	rocketCount = 0;
+	isFiring = false;
+	elapsed = 0.0f;
+	timeSinceLast = 0.0f;
 }
 
 void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
@@ -67,7 +73,7 @@ void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
 	{
 		if (!isPressed)
 		{
-			auto projectile = make_shared<Projectile>("plasma");
+			/*auto projectile = make_shared<Projectile>("plasma");
 			projectile->SetOrigin(sf::Vector2f(projectile->GetWidth() / 2, projectile->GetHeight() / 2));
 			projectile->SetPosition(sf::Vector2f(player->GetPosition().x + (player->GetWidth() / 2) - 50, player->GetPosition().y));
 			projectile->SetRotation(player->GetRotation());
@@ -75,13 +81,51 @@ void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
 			projectile->SetVelocity(sf::Vector2f(1000.0f, 0.0f));
 			projectile->SetColor(sf::Color(255, 255, 255, 200));
 			projectile->SetZOrder(50);
-			battleScene->Add(projectile);
+			battleScene->Add(projectile);*/
+
+			isFiring = true;
 		}
 	}
 }
 
 void OrionGame::Update(sf::Time elapsedTime)
 {
+	timeSinceLast = elapsedTime.asMilliseconds() - timeSinceLast;
+	if (isFiring)
+	{
+		elapsed += timeSinceLast;
+		if (rocketCount == 0)
+		{
+			auto projectile = make_shared<Projectile>("rocket");
+			projectile->SetOrigin(sf::Vector2f(projectile->GetWidth() / 2, projectile->GetHeight() / 2));
+			projectile->SetPosition(sf::Vector2f(player->GetPosition().x + (player->GetWidth() / 2) - 250, player->GetPosition().y + 8));
+			projectile->SetVelocity(sf::Vector2f(100.0f, 0.0f));
+			projectile->SetRotation(player->GetRotation());
+			projectile->SetZOrder(50);
+			battleScene->Add(projectile);
+
+			rocketCount++;
+		}
+		else
+		{
+			if (rocketCount == 1 && elapsed > 500.0f)
+			{
+				auto projectile = make_shared<Projectile>("rocket");
+				projectile->SetOrigin(sf::Vector2f(projectile->GetWidth() / 2, projectile->GetHeight() / 2));
+				projectile->SetPosition(sf::Vector2f(player->GetPosition().x + (player->GetWidth() / 2) - 250, player->GetPosition().y + 8));
+				projectile->SetVelocity(sf::Vector2f(100.0f, 0.0f));
+				projectile->SetRotation(player->GetRotation());
+				projectile->SetZOrder(50);
+				battleScene->Add(projectile);
+
+				rocketCount = 0;
+				isFiring = false;
+				elapsed = 0.0f;
+			}
+		}
+		printf("%lf\n", elapsed);
+	}
+
 	battleScene->Update(elapsedTime);
 	UserInterface.Update();
 }

@@ -101,6 +101,9 @@
     <ClInclude Include="UIManager.hpp">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="QuickbarItem.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceHolder.inl">

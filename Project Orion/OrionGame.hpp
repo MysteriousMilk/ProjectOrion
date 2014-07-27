@@ -20,6 +20,11 @@ private:
 	UIManager UserInterface;
 	shared_ptr<Sprite> player;
 	shared_ptr<Scene> battleScene;
+
+	int rocketCount;
+	bool isFiring;
+	float elapsed;
+	float timeSinceLast;
 };
 
 #endif //_ORIONGAME_HPP_
