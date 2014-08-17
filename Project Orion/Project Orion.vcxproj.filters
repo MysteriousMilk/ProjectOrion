@@ -19,10 +19,34 @@
     <Filter Include="Source Files\Orion">
       <UniqueIdentifier>{a154f610-50cd-40a7-9f2e-7017841a126d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\UI">
+    <Filter Include="Header Files\CppSQLite">
+      <UniqueIdentifier>{35d9631b-976c-4454-a1ba-9f2dd5bee731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Orion\Core">
+      <UniqueIdentifier>{fac31622-a6a4-4664-b706-8bfb7c792f1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Orion\Resources">
+      <UniqueIdentifier>{afb9b1e3-d38a-4092-a005-a5bcd3f494bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Orion\UI">
       <UniqueIdentifier>{66dc1fe9-9bde-45c0-a9bf-36835e9e3425}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI">
+    <Filter Include="Header Files\Orion\Game">
+      <UniqueIdentifier>{3ccf1047-7d3f-4f2a-b8b7-d7ce3a1eb8f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Orion\Factories">
+      <UniqueIdentifier>{783cf9e3-1ea5-4dad-911c-11c1da49f7e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Orion\Game">
+      <UniqueIdentifier>{016ea141-fb04-434f-90b2-42c2b736179b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Orion\Resources">
+      <UniqueIdentifier>{0e6b75b6-4e2a-4c2f-a648-b42d7f811c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Orion\Core">
+      <UniqueIdentifier>{94626d7c-b6d8-4643-b7c0-dc50aa3e4e88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Orion\UI">
       <UniqueIdentifier>{50dfc201-f5fa-4724-8bf7-8f79deb44eb1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -30,84 +54,123 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Orion</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Source Files\Orion</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source Files\Orion</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\Orion</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files\Orion</Filter>
-    </ClCompile>
     <ClCompile Include="OrionGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Control.cpp">
-      <Filter>Source Files\UI</Filter>
+    <ClCompile Include="CppSQLite\CppSQLite3.cpp">
+      <Filter>Header Files\CppSQLite</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>Source Files\UI</Filter>
+    <ClCompile Include="Orion\Game\Game.cpp">
+      <Filter>Source Files\Orion\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Quickbar.cpp">
-      <Filter>Source Files\UI</Filter>
+    <ClCompile Include="Orion\Game\Player.cpp">
+      <Filter>Source Files\Orion\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\Game\Weapon.cpp">
+      <Filter>Source Files\Orion\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\Core\Layer.cpp">
+      <Filter>Source Files\Orion\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\Core\Scene.cpp">
+      <Filter>Source Files\Orion\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\Core\Sprite.cpp">
+      <Filter>Source Files\Orion\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\Resources\ResourceManager.cpp">
+      <Filter>Source Files\Orion\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\UI\Control.cpp">
+      <Filter>Source Files\Orion\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\UI\Quickbar.cpp">
+      <Filter>Source Files\Orion\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\UI\UIManager.cpp">
+      <Filter>Source Files\Orion\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\Core\SceneNode.cpp">
+      <Filter>Source Files\Orion\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\Core\ScriptingDefs.cpp">
+      <Filter>Source Files\Orion\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Orion.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceHolder.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="Types.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableEntity.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.hpp">
-      <Filter>Header Files\Orion</Filter>
-    </ClInclude>
     <ClInclude Include="OrionGame.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Control.hpp">
-      <Filter>Header Files\UI</Filter>
+    <ClInclude Include="CppSQLite\CppSQLite3.h">
+      <Filter>Header Files\CppSQLite</Filter>
     </ClInclude>
-    <ClInclude Include="Quickbar.hpp">
-      <Filter>Header Files\UI</Filter>
+    <ClInclude Include="CppSQLite\sqlite3.h">
+      <Filter>Header Files\CppSQLite</Filter>
     </ClInclude>
-    <ClInclude Include="UIManager.hpp">
-      <Filter>Header Files\UI</Filter>
+    <ClInclude Include="Orion\Orion.hpp">
+      <Filter>Header Files\Orion</Filter>
     </ClInclude>
-    <ClInclude Include="QuickbarItem.hpp">
-      <Filter>Header Files\UI</Filter>
+    <ClInclude Include="Orion\Types.hpp">
+      <Filter>Header Files\Orion</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Core\Layer.hpp">
+      <Filter>Header Files\Orion\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Core\Scene.hpp">
+      <Filter>Header Files\Orion\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Core\Sprite.hpp">
+      <Filter>Header Files\Orion\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Game\Game.hpp">
+      <Filter>Header Files\Orion\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Game\Player.hpp">
+      <Filter>Header Files\Orion\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Game\Projectile.hpp">
+      <Filter>Header Files\Orion\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Game\Weapon.hpp">
+      <Filter>Header Files\Orion\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Factories\WeaponFactory.hpp">
+      <Filter>Header Files\Orion\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Resources\ResourceHolder.hpp">
+      <Filter>Header Files\Orion\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Resources\ResourceManager.hpp">
+      <Filter>Header Files\Orion\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\UI\Control.hpp">
+      <Filter>Header Files\Orion\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\UI\Quickbar.hpp">
+      <Filter>Header Files\Orion\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\UI\QuickbarItem.hpp">
+      <Filter>Header Files\Orion\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\UI\UIManager.hpp">
+      <Filter>Header Files\Orion\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Core\ScriptEngine.hpp">
+      <Filter>Header Files\Orion\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Core\DrawableEntity.hpp">
+      <Filter>Header Files\Orion\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Core\SceneNode.hpp">
+      <Filter>Header Files\Orion\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Core\ScriptingDefs.hpp">
+      <Filter>Header Files\Orion\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ResourceHolder.inl">
-      <Filter>Header Files\Orion</Filter>
+    <None Include="Orion\Resources\ResourceHolder.inl">
+      <Filter>Header Files\Orion\Resources</Filter>
     </None>
   </ItemGroup>
 </Project>

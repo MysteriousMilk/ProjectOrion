@@ -13,8 +13,13 @@
 
 int main()
 {
-	OrionGame game(sf::Vector2i(1280, 720));
-	game.Run();
+	auto game = make_shared<OrionGame>(sf::Vector2i(1280, 720));
+	
+	// regiester the game with Orion
+	Orion::Engine::getInstance().RegisterGame(game);
+
+	// start the main game loop
+	game->Run();
 
 	return 0;
 }

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resource>
+  <Projectile>
+    <Sprite>
+      <Path>images/projectiles/rocket.png</Path>
+      <Ref>rocket</Ref>
+    </Sprite>
+    <Velocity>100.0</Velocity>
+  </Projectile>
+</Resource>

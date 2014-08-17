@@ -84,15 +84,15 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\SFML\SFML-2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML\SFML-2.1\include;dependancies\boost\include;dependancies\lua\include;dependancies\luabind\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SFML\SFML-2.1\Libs\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\SFML\SFML-2.1\Libs\Debug;dependancies\lua;dependancies\luabind\msvc-12.0-x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sqlite3.lib;lua5.1.lib;luabind.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">
@@ -101,16 +101,16 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;SFML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\SFML\SFML-2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML\SFML-2.1\include;dependancies\boost\include;dependancies\lua\include;dependancies\luabind\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\SFML\SFML-2.1\extlibs\libs-msvc\x86;C:\SFML\SFML-2.1\Staitc Libs\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;sqlite3.lib;lua5.1.lib;luabind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\SFML\SFML-2.1\extlibs\libs-msvc\x86;C:\SFML\SFML-2.1\Staitc Libs\Debug;dependancies\lua;dependancies\luabind\msvc-12.0-x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -157,36 +157,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Control.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="CppSQLite\CppSQLite3.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OrionGame.cpp" />
-    <ClCompile Include="Quickbar.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="Orion\Core\Layer.cpp" />
+    <ClCompile Include="Orion\Core\Scene.cpp" />
+    <ClCompile Include="Orion\Core\SceneNode.cpp" />
+    <ClCompile Include="Orion\Core\ScriptingDefs.cpp" />
+    <ClCompile Include="Orion\Core\Sprite.cpp" />
+    <ClCompile Include="Orion\Game\Game.cpp" />
+    <ClCompile Include="Orion\Game\Player.cpp" />
+    <ClCompile Include="Orion\Game\Weapon.cpp" />
+    <ClCompile Include="Orion\Resources\ResourceManager.cpp" />
+    <ClCompile Include="Orion\UI\Control.cpp" />
+    <ClCompile Include="Orion\UI\Quickbar.cpp" />
+    <ClCompile Include="Orion\UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Control.hpp" />
-    <ClInclude Include="DrawableEntity.hpp" />
-    <ClInclude Include="Game.hpp" />
-    <ClInclude Include="Layer.hpp" />
-    <ClInclude Include="Orion.hpp" />
+    <ClInclude Include="CppSQLite\CppSQLite3.h" />
+    <ClInclude Include="CppSQLite\sqlite3.h" />
     <ClInclude Include="OrionGame.hpp" />
-    <ClInclude Include="Projectile.hpp" />
-    <ClInclude Include="Quickbar.hpp" />
-    <ClInclude Include="QuickbarItem.hpp" />
-    <ClInclude Include="ResourceHolder.hpp" />
-    <ClInclude Include="ResourceManager.hpp" />
-    <ClInclude Include="Scene.hpp" />
-    <ClInclude Include="Sprite.hpp" />
-    <ClInclude Include="Types.hpp" />
-    <ClInclude Include="UIManager.hpp" />
+    <ClInclude Include="Orion\Core\DrawableEntity.hpp" />
+    <ClInclude Include="Orion\Core\Layer.hpp" />
+    <ClInclude Include="Orion\Core\Scene.hpp" />
+    <ClInclude Include="Orion\Core\SceneNode.hpp" />
+    <ClInclude Include="Orion\Core\ScriptEngine.hpp" />
+    <ClInclude Include="Orion\Core\ScriptingDefs.hpp" />
+    <ClInclude Include="Orion\Core\Sprite.hpp" />
+    <ClInclude Include="Orion\Factories\WeaponFactory.hpp" />
+    <ClInclude Include="Orion\Game\Game.hpp" />
+    <ClInclude Include="Orion\Game\Player.hpp" />
+    <ClInclude Include="Orion\Game\Projectile.hpp" />
+    <ClInclude Include="Orion\Game\Weapon.hpp" />
+    <ClInclude Include="Orion\Orion.hpp" />
+    <ClInclude Include="Orion\Resources\ResourceHolder.hpp" />
+    <ClInclude Include="Orion\Resources\ResourceManager.hpp" />
+    <ClInclude Include="Orion\Types.hpp" />
+    <ClInclude Include="Orion\UI\Control.hpp" />
+    <ClInclude Include="Orion\UI\Quickbar.hpp" />
+    <ClInclude Include="Orion\UI\QuickbarItem.hpp" />
+    <ClInclude Include="Orion\UI\UIManager.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ResourceHolder.inl" />
+    <None Include="Orion\Resources\ResourceHolder.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
