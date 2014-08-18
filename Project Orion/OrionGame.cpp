@@ -9,6 +9,7 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 		ResourceManager::getInstance().Textures.load("ToolbarLeft", "resources/ui/toolbar_left.png");
 		ResourceManager::getInstance().Textures.load("ToolbarRight", "resources/ui/toolbar_right.png");
 		ResourceManager::getInstance().Textures.load("ToolbarCenter", "resources/ui/toolbar_center.png");
+		ResourceManager::getInstance().Textures.load("RocketIcon", "resources/ui/rocket_icon.png");
 
 		ResourceManager::getInstance().Textures.load("background", "resources/images/background1.jpg");
 		ResourceManager::getInstance().Textures.load("planet", "resources/images/planet.png");
@@ -58,8 +59,10 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 
 	auto ctrl = make_shared<Quickbar>(10);
 	ctrl->SetPosition(sf::Vector2f(15, 500));
-	ctrl->SetSize(sf::Vector2f(32, 32));
 	ctrl->SetColor(sf::Color(102, 204, 204, 220));
+	auto qbItem = make_shared<QuickbarItem>("RocketIcon", "resources/scripts/orion_fire_rockets.lua");
+	qbItem->SetSlot(0);
+	ctrl->Add(qbItem);
 	UserInterface.Add(ctrl);
 
 	rocketCount = 0;
@@ -83,6 +86,29 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 	Orion::Engine::getInstance().RegisterPlayer(mPlayer.get());
 }
 
+void OrionGame::ProcessEvents()
+{
+	sf::Event event;
+	while (mWindow.pollEvent(event))
+	{
+		switch (event.type)
+		{
+		case sf::Event::KeyPressed:
+			Input(event.key.code, true);
+			break;
+
+		case sf::Event::KeyReleased:
+			Input(event.key.code, false);
+			break;
+
+		case sf::Event::Closed:
+			mWindow.close();
+			break;
+		}
+		UserInterface.ProcessEvents(event);
+	}
+}
+
 void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
 {
 	if (key == sf::Keyboard::Space)
@@ -100,7 +126,7 @@ void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
 			//projectile->SetZOrder(50);
 			//battleScene->Add(projectile);
 			//mPlayer->FireProjectile(WEAPON_TYPE_ROCKET);
-			Script.Execute("resources/scripts/orion_fire_rockets.lua");
+			//Script.Execute("resources/scripts/orion_fire_rockets.lua");
 
 			isFiring = true;
 		}

@@ -28,6 +28,8 @@ namespace Orion
 			mToolbarTexture.draw(drawRect);
 
 			mToolbarTexture.display();
+
+			SetSize(static_cast<sf::Vector2f>(mToolbarTexture.getSize()));
 		}
 
 		Quickbar::~Quickbar()
@@ -35,9 +37,32 @@ namespace Orion
 
 		}
 
+		void Quickbar::Add(shared_ptr<QuickbarItem> ctrl)
+		{
+			float x = mControlRect.left + (32 * ctrl->GetSlot()) + 4;
+			float y = mControlRect.top + 4;
+			ctrl->SetPosition(sf::Vector2f(x, y));
+			ctrl->SetAlpha(this->GetAlpha());
+
+			mItems.push_back(ctrl);
+			sort(mItems.begin(), mItems.end(), SortQuickbar);
+		}
+
+		void Quickbar::ProcessEvents(const sf::Event& e)
+		{
+			for (auto iterator = mItems.begin(); iterator != mItems.end(); ++iterator)
+			{
+				iterator->get()->ProcessEvents(e);
+			}
+			Control::ProcessEvents(e);
+		}
+
 		void Quickbar::Update()
 		{
-
+			for (auto iterator = mItems.begin(); iterator != mItems.end(); ++iterator)
+			{
+				iterator->get()->Update();
+			}
 		}
 
 		void Quickbar::Draw(sf::RenderWindow& window)
@@ -48,6 +73,16 @@ namespace Orion
 			drawRect.setTexture(&mToolbarTexture.getTexture());
 			drawRect.setFillColor(mColor);
 			window.draw(drawRect);
+
+			for (auto iterator = mItems.begin(); iterator != mItems.end(); ++iterator)
+			{
+				iterator->get()->Draw(window);
+			}
+		}
+
+		bool SortQuickbar(shared_ptr<QuickbarItem> one, shared_ptr<QuickbarItem> two)
+		{
+			return one->GetSlot() < two->GetSlot();
 		}
 	}
 }

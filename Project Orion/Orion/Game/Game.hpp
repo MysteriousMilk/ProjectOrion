@@ -17,7 +17,7 @@ namespace Orion
 			void					Run();
 
 		private:
-			void					ProcessEvents();
+			virtual void			ProcessEvents();
 			virtual void			Update(sf::Time elapsedTime);
 			virtual void			Render();
 

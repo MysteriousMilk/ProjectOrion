@@ -15,12 +15,12 @@ class OrionGame : public Game
 public:
 	OrionGame(const sf::Vector2i&);
 
+	void ProcessEvents();
 	void Input(sf::Keyboard::Key key, bool isPressed);
 	void Update(sf::Time elapsedTime);
 	void Render();
 
 private:
-	ScriptEngine Script;
 	UIManager UserInterface;
 	shared_ptr<Player> mPlayer;
 	//shared_ptr<Sprite> player;

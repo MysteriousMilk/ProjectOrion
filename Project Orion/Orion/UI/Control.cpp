@@ -79,6 +79,27 @@ namespace Orion
 			mParent = parent;
 		}
 
+		void Control::OnClick()
+		{
+
+		}
+
+		void Control::ProcessEvents(const sf::Event& e)
+		{
+			switch(e.type)
+			{
+				case sf::Event::MouseButtonReleased:
+				{
+					if (e.mouseButton.button == sf::Mouse::Button::Left)
+					{
+						if (mControlRect.contains(e.mouseButton.x, e.mouseButton.y))
+							OnClick();
+					}
+				}
+				break;
+			}
+		}
+
 		void Control::Update()
 		{
 

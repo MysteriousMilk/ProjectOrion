@@ -34,6 +34,9 @@ namespace Orion
 			void				SetSize(const sf::Vector2f&);
 			void				SetColor(const sf::Color&);
 
+			virtual void		OnClick();
+
+			virtual void		ProcessEvents(const sf::Event&);
 			virtual void		Update();
 			virtual void		Draw(sf::RenderWindow&);
 

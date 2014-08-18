@@ -19,6 +19,14 @@ namespace Orion
 			mControlList.push_back(ctrl);
 		}
 
+		void UIManager::ProcessEvents(const sf::Event& e)
+		{
+			for (auto iterator = mControlList.begin(); iterator != mControlList.end(); ++iterator)
+			{
+				iterator->get()->ProcessEvents(e);
+			}
+		}
+
 		void UIManager::Update()
 		{
 			for (auto iterator = mControlList.begin(); iterator != mControlList.end(); ++iterator)

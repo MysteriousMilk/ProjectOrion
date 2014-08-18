@@ -171,6 +171,7 @@
     <ClCompile Include="Orion\Resources\ResourceManager.cpp" />
     <ClCompile Include="Orion\UI\Control.cpp" />
     <ClCompile Include="Orion\UI\Quickbar.cpp" />
+    <ClCompile Include="Orion\UI\QuickbarItem.cpp" />
     <ClCompile Include="Orion\UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,18 @@ namespace Orion
 	class ScriptEngine
 	{
 	public:
+		static ScriptEngine& getInstance()
+		{
+			static ScriptEngine instance;
+			return instance;
+		}
+
+		void Execute(std::string script)
+		{
+			luaL_dofile(mLuaState, script.c_str());
+		}
+
+	private:
 		ScriptEngine()
 		{
 			mLuaState = luaL_newstate();
@@ -45,12 +57,9 @@ namespace Orion
 			lua_close(mLuaState);
 		}
 
-		void Execute(std::string script)
-		{
-			luaL_dofile(mLuaState, script.c_str());
-		}
+		ScriptEngine(ScriptEngine const&);
+		void operator=(ScriptEngine const&);
 
-	private:
 		lua_State*	mLuaState;
 	};
 }

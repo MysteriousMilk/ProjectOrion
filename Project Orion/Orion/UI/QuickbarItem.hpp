@@ -1,6 +1,7 @@
 #ifndef _QUICKBARITEM_HPP_
 #define _QUICKBARITEM_HPP_
 
+#include "../Core/ScriptEngine.hpp"
 #include "Control.hpp"
 
 namespace Orion
@@ -10,13 +11,17 @@ namespace Orion
 		class QuickbarItem : public Control
 		{
 		public:
-			QuickbarItem();
+			QuickbarItem(std::string, std::string);
 			~QuickbarItem();
 
-			void(*QuickbarItemCallback)(void);
+			int GetSlot();
+			void SetSlot(int);
+
+			void OnClick();
 
 		private:
-			float mCooldown;
+			int mSlot;
+			std::string mScriptRef;
 		};
 	}
 }

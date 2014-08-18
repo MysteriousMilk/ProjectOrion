@@ -96,6 +96,9 @@
     <ClCompile Include="Orion\Core\ScriptingDefs.cpp">
       <Filter>Source Files\Orion\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Orion\UI\QuickbarItem.cpp">
+      <Filter>Source Files\Orion\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OrionGame.hpp">

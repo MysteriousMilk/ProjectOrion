@@ -18,6 +18,7 @@ namespace Orion
 			~UIManager();
 
 			void Add(shared_ptr<Control>);
+			void ProcessEvents(const sf::Event&);
 			void Update();
 			void Draw(sf::RenderWindow&);
 
