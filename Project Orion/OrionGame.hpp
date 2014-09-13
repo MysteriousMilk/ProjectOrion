@@ -4,6 +4,7 @@
 #include "Orion\Core\ScriptEngine.hpp"
 #include "Orion\UI\UIManager.hpp"
 #include "Orion\Orion.hpp"
+#include "Orion\Event\EventQueue.hpp"
 
 using namespace Orion;
 using namespace Orion::Game;

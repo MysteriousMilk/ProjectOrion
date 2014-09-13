@@ -4,4 +4,8 @@
 -- 3 = Rail Guns
 
 player = GetPlayer();
-player:FireProjectile(1);
+weaponType = 1;
+
+for i=0,2,1 do
+	player:FireProjectileWithDelay(1, i*0.4);
+end

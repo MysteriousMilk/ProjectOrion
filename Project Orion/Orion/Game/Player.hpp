@@ -2,8 +2,12 @@
 #define _PLAYER_HPP_
 
 #include "../Core/Sprite.hpp"
+#include "../Event/EventQueue.hpp"
+#include "../Event/FireProjectileEvent.hpp"
 #include "Weapon.hpp"
 #include "Game.hpp"
+
+using namespace Orion::Event;
 
 namespace Orion
 {
@@ -33,6 +37,8 @@ namespace Orion
 			shared_ptr<Weapon> mRocketBattery;
 			shared_ptr<Weapon> mLaserTurrent;
 			shared_ptr<Weapon> mRailGun;
+
+			sf::Clock			mTimer;
 		};
 	}
 }

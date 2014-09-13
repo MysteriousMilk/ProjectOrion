@@ -67,7 +67,7 @@ namespace Orion
 
 		void Game::Update(sf::Time elapsedTime)
 		{
-
+			
 		}
 
 		void Game::Render()

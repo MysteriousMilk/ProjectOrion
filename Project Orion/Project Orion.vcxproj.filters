@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Orion\UI">
       <UniqueIdentifier>{50dfc201-f5fa-4724-8bf7-8f79deb44eb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Orion\Event">
+      <UniqueIdentifier>{cd46f34e-5d68-4f8a-9dd6-c016b7b72ff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Orion\Event">
+      <UniqueIdentifier>{c4a7f7f2-d7f1-4e0a-9f7b-1cd309cfa40d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -98,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Orion\UI\QuickbarItem.cpp">
       <Filter>Source Files\Orion\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Orion\Event\EventQueue.cpp">
+      <Filter>Source Files\Orion\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +178,15 @@
     </ClInclude>
     <ClInclude Include="Orion\Core\ScriptingDefs.hpp">
       <Filter>Header Files\Orion\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Event\EventQueue.hpp">
+      <Filter>Header Files\Orion\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Event\GenericEvent.hpp">
+      <Filter>Header Files\Orion\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Event\FireProjectileEvent.hpp">
+      <Filter>Header Files\Orion\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

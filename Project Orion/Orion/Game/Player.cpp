@@ -80,19 +80,35 @@ namespace Orion
 			switch (wpnType)
 			{
 			case WEAPON_TYPE_ROCKET:
-				auto projectile = mRocketBattery->GetProjectile()->Clone();
+				/*auto projectile = mRocketBattery->GetProjectile()->Clone();
 				projectile->SetPosition(mSprite->GetPosition());
 				projectile->SetVelocity(sf::Vector2f(projectile->GetSpeed(), 0.0f));
 				projectile->SetRotation(mSprite->GetRotation());
 				projectile->SetZOrder(50);
-				GetParent()->Add(projectile);
+				GetParent()->Add(projectile);*/
+				auto rocketEvent = make_shared<FireProjectileEvent>(mRocketBattery,
+																	GetParent(),
+																	mSprite->GetPosition(),
+																	mSprite->GetRotation(),
+																	0.0f);
+				EventQueue::getInstance().Add(rocketEvent);
 				break;
 			}
 		}
 
-		void Player::FireProjectileWithDelay(int wpnId, float msDelay)
+		void Player::FireProjectileWithDelay(int wpnType, float delay)
 		{
-			printf("FireProjectileWithDelay(int, float) not yet implemented.\n");
+			switch (wpnType)
+			{
+			case WEAPON_TYPE_ROCKET:
+				auto rocketEvent = make_shared<FireProjectileEvent>(mRocketBattery,
+					GetParent(),
+					mSprite->GetPosition(),
+					mSprite->GetRotation(),
+					delay);
+				EventQueue::getInstance().Add(rocketEvent);
+				break;
+			}
 		}
 
 		shared_ptr<Sprite> Player::GetSprite()

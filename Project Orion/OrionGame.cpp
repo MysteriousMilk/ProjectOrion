@@ -24,17 +24,17 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 	}
 
 	// create the objects
-	auto background = make_shared<Sprite>("background");
+	auto background = make_shared<Orion::Sprite>("background");
 	background->SetPosition(sf::Vector2f(resolution.x / 2.0f, resolution.y / 2.0f));
 	background->SetOrigin(sf::Vector2f(background->GetWidth() / 2.0f, background->GetHeight() / 2.0f));
 	background->SetZOrder(0);
 
-	auto planet = make_shared<Sprite>("planet");
+	auto planet = make_shared<Orion::Sprite>("planet");
 	planet->SetPosition(sf::Vector2f(resolution.x / 2.0f, 650.0f));
 	planet->SetOrigin(sf::Vector2f(planet->GetWidth() / 2.0f, planet->GetHeight() / 2.0f));
 	planet->SetZOrder(1);
 
-	auto enemy = make_shared<Sprite>("enemy");
+	auto enemy = make_shared<Orion::Sprite>("enemy");
 	enemy->SetOrigin(sf::Vector2f(enemy->GetWidth() / 2.0f, enemy->GetHeight() / 2.0f));
 	enemy->SetPosition(sf::Vector2f(resolution.x - 175.0f, resolution.y / 2.0f));
 	enemy->SetRotation(-90.0f);
@@ -170,7 +170,7 @@ void OrionGame::Update(sf::Time elapsedTime)
 		}
 		printf("%lf\n", elapsed);
 	}*/
-
+	Orion::Event::EventQueue::getInstance().Update(elapsedTime);
 	battleScene->Update(elapsedTime);
 	UserInterface.Update();
 }
