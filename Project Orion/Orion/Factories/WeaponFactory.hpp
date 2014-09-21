@@ -48,12 +48,25 @@ namespace Orion
 						query = mDatabase.execQuery(sql);
 						while (!query.eof())
 						{
-							weapon->SetProjectile(make_shared<Projectile>(query.getIntField(0),
-								query.fieldValue(1),
-								query.fieldValue(2),
-								query.fieldValue(3),
-								query.getIntField(4),
-								query.getFloatField(5)));
+							switch (weapon->GetId())
+							{
+								case WEAPON_TYPE_ROCKET:
+									weapon->SetProjectile(make_shared<RocketProjectile>(query.getIntField(0),
+										query.fieldValue(1),
+										query.fieldValue(2),
+										query.fieldValue(3),
+										query.getIntField(4),
+										query.getFloatField(5)));
+									break;
+								default:
+									weapon->SetProjectile(make_shared<Projectile>(query.getIntField(0),
+										query.fieldValue(1),
+										query.fieldValue(2),
+										query.fieldValue(3),
+										query.getIntField(4),
+										query.getFloatField(5)));
+									break;
+							}
 							break;
 						}
 					}

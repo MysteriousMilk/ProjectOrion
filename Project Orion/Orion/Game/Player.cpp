@@ -86,6 +86,9 @@ namespace Orion
 				projectile->SetRotation(mSprite->GetRotation());
 				projectile->SetZOrder(50);
 				GetParent()->Add(projectile);*/
+				RocketProjectile* proj = dynamic_cast<RocketProjectile*>(mRocketBattery->GetProjectile().get());
+				printf("Aimpoint (%lf, %lf)", proj->GetAimpoint().x, proj->GetAimpoint().y);
+
 				auto rocketEvent = make_shared<FireProjectileEvent>(mRocketBattery,
 																	GetParent(),
 																	mSprite->GetPosition(),
@@ -101,10 +104,21 @@ namespace Orion
 			switch (wpnType)
 			{
 			case WEAPON_TYPE_ROCKET:
+				RocketProjectile* proj = dynamic_cast<RocketProjectile*>(mRocketBattery->GetProjectile().get());
+				proj->SetAimpoint(1280, 200);
+
+				double deltax = proj->GetAimpoint().x - mSprite->GetPosition().x;
+				double deltay = proj->GetAimpoint().y - mSprite->GetPosition().y;
+
+				double angle = Math::ToDegrees(atan2(deltay, deltax)) + 90;
+
+				//printf("Aimpoint (%lf, %lf)\n", proj->GetAimpoint().x, proj->GetAimpoint().y);
+				printf("Angle: %lf\n", angle);
+
 				auto rocketEvent = make_shared<FireProjectileEvent>(mRocketBattery,
 					GetParent(),
 					mSprite->GetPosition(),
-					mSprite->GetRotation(),
+					angle,
 					delay);
 				EventQueue::getInstance().Add(rocketEvent);
 				break;

@@ -1,6 +1,7 @@
 #ifndef _SPRITE_HPP_
 #define _SPRITE_HPP_
 
+#include <math.h>
 #include <SFML\Graphics.hpp>
 #include "SceneNode.hpp"
 #include "DrawableEntity.hpp"

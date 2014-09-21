@@ -55,6 +55,9 @@
     <Filter Include="Source Files\Orion\Event">
       <UniqueIdentifier>{c4a7f7f2-d7f1-4e0a-9f7b-1cd309cfa40d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Orion\Utilities">
+      <UniqueIdentifier>{98663a5f-7d88-4f9b-a2f2-31c3c7aeb3b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -187,6 +190,12 @@
     </ClInclude>
     <ClInclude Include="Orion\Event\FireProjectileEvent.hpp">
       <Filter>Header Files\Orion\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Game\RocketProjectile.hpp">
+      <Filter>Header Files\Orion\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Utilities\Math.hpp">
+      <Filter>Header Files\Orion\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

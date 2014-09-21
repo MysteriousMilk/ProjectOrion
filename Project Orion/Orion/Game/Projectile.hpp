@@ -3,8 +3,10 @@
 
 #include <string>
 #include "../Core/Sprite.hpp"
+#include "../Utilities/Math.hpp"
 
 using namespace std;
+using namespace Orion::Utilities;
 
 namespace Orion
 {
@@ -52,6 +54,10 @@ namespace Orion
 				sf::IntRect screen(0, 0, 1280, 720);
 				if (!screen.contains((int)this->GetPosition().x, (int)this->GetPosition().y))
 					SetAlive(false);
+
+				float velx = cos(Math::ToRadians(GetRotation() - 90)) * mSpeed;
+				float vely = sin(Math::ToRadians(GetRotation() - 90)) * mSpeed;
+				SetVelocity(sf::Vector2f(velx, vely));
 
 				Sprite::Update(deltaTime);
 			}

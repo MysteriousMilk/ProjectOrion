@@ -193,6 +193,7 @@
     <ClInclude Include="Orion\Game\Game.hpp" />
     <ClInclude Include="Orion\Game\Player.hpp" />
     <ClInclude Include="Orion\Game\Projectile.hpp" />
+    <ClInclude Include="Orion\Game\RocketProjectile.hpp" />
     <ClInclude Include="Orion\Game\Weapon.hpp" />
     <ClInclude Include="Orion\Orion.hpp" />
     <ClInclude Include="Orion\Resources\ResourceHolder.hpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Orion\UI\Quickbar.hpp" />
     <ClInclude Include="Orion\UI\QuickbarItem.hpp" />
     <ClInclude Include="Orion\UI\UIManager.hpp" />
+    <ClInclude Include="Orion\Utilities\Math.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Orion\Resources\ResourceHolder.inl" />

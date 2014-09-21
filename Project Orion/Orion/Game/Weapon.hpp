@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Projectile.hpp"
+#include "RocketProjectile.hpp"
 
 using namespace std;
 
