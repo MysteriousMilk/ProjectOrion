@@ -39,8 +39,8 @@ namespace Orion
 
 		void Quickbar::Add(shared_ptr<QuickbarItem> ctrl)
 		{
-			float x = mControlRect.left + (32 * ctrl->GetSlot()) + 4;
-			float y = mControlRect.top + 4;
+			float x = mControlRect.left + (32.0f * ctrl->GetSlot()) + 4.0f;
+			float y = mControlRect.top + 4.0f;
 			ctrl->SetPosition(sf::Vector2f(x, y));
 			ctrl->SetAlpha(this->GetAlpha());
 

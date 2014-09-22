@@ -3,7 +3,6 @@
 
 #include <string>
 #include "Projectile.hpp"
-#include "RocketProjectile.hpp"
 
 using namespace std;
 
@@ -26,11 +25,14 @@ namespace Orion
 			int						GetMinimumLevel();
 			shared_ptr<Projectile>	GetProjectile();
 			void					SetProjectile(shared_ptr<Projectile>);
+			sf::Vector2f&			GetRelativeLocation();
+			void					SetRelativeLocation(const sf::Vector2f&);
 
 		private:
 			int						mId;
 			string					mName;
 			int						mMinimumLevel;
+			sf::Vector2f			mRelLocation;
 
 			shared_ptr<Projectile>	mProjectile;
 		};

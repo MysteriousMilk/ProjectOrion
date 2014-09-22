@@ -1,6 +1,7 @@
 #ifndef _PLAYER_HPP_
 #define _PLAYER_HPP_
 
+#include <SFML\System.hpp>
 #include "../Core/Sprite.hpp"
 #include "../Event/EventQueue.hpp"
 #include "../Event/FireProjectileEvent.hpp"
@@ -20,11 +21,12 @@ namespace Orion
 			~Player();
 
 			int		GetWeaponId(int);
-			void	FireProjectile(int);
-			void	FireProjectileWithDelay(int, float);
+			void	FireProjectile(int, float, float);
+			void	FireProjectileWithDelay(int, float, float, float);
+			void	SetAimpoint(float, float);
 
 			shared_ptr<Sprite> GetSprite();
-			void	SetWeapon(shared_ptr<Weapon>, int);
+			void	AddWeapon(shared_ptr<Weapon>, int);
 
 			bool	IsAlive();
 			int		Count();
@@ -33,12 +35,15 @@ namespace Orion
 			void	Add(shared_ptr<SceneNode>);
 
 		private:
-			shared_ptr<Sprite> mSprite;
-			shared_ptr<Weapon> mRocketBattery;
-			shared_ptr<Weapon> mLaserTurrent;
-			shared_ptr<Weapon> mRailGun;
+			shared_ptr<Sprite>			mSprite;
+			vector<shared_ptr<Weapon>>	mRocketBatteryList;
+			shared_ptr<Weapon>			mLaserTurrent;
+			shared_ptr<Weapon>			mRailGun;
+
+			sf::Vector2f		mAimpoint;
 
 			sf::Clock			mTimer;
+			int					mFireSlot;
 		};
 	}
 }

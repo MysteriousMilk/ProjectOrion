@@ -111,6 +111,9 @@
     <ClCompile Include="Orion\Event\EventQueue.cpp">
       <Filter>Source Files\Orion\Event</Filter>
     </ClCompile>
+    <ClCompile Include="Orion\Game\Enemy.cpp">
+      <Filter>Source Files\Orion\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OrionGame.hpp">
@@ -191,11 +194,11 @@
     <ClInclude Include="Orion\Event\FireProjectileEvent.hpp">
       <Filter>Header Files\Orion\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Orion\Game\RocketProjectile.hpp">
-      <Filter>Header Files\Orion\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Orion\Utilities\Math.hpp">
       <Filter>Header Files\Orion\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Orion\Game\Enemy.hpp">
+      <Filter>Header Files\Orion\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

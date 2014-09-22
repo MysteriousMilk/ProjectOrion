@@ -7,6 +7,7 @@ namespace Orion
 		Player::Player(std::string ref)
 		{
 			mSprite = make_shared<Sprite>(ref);
+			mFireSlot = 0;
 		}
 
 		Player::~Player()
@@ -34,12 +35,12 @@ namespace Orion
 			mSprite->Draw(window);
 		}
 
-		void Player::SetWeapon(shared_ptr<Weapon> weapon, int wpnType)
+		void Player::AddWeapon(shared_ptr<Weapon> weapon, int wpnType)
 		{
 			switch (wpnType)
 			{
 			case WEAPON_TYPE_ROCKET:
-				mRocketBattery = weapon;
+				mRocketBatteryList.push_back(weapon);
 				break;
 			case WEAPON_TYPE_LASER:
 				mLaserTurrent = weapon;
@@ -57,8 +58,8 @@ namespace Orion
 			switch (weaponType)
 			{
 			case WEAPON_TYPE_ROCKET:
-				if (mRocketBattery != nullptr)
-					weaponId = mRocketBattery->GetId();
+				if (mRocketBatteryList.size() > 0)
+					weaponId = mRocketBatteryList[0]->GetId();
 				break;
 
 			case WEAPON_TYPE_LASER:
@@ -75,54 +76,80 @@ namespace Orion
 			return weaponId;
 		}
 
-		void Player::FireProjectile(int wpnType)
+		void Player::FireProjectile(int wpnType, float aimpointx, float aimpointy)
 		{
 			switch (wpnType)
 			{
 			case WEAPON_TYPE_ROCKET:
-				/*auto projectile = mRocketBattery->GetProjectile()->Clone();
-				projectile->SetPosition(mSprite->GetPosition());
-				projectile->SetVelocity(sf::Vector2f(projectile->GetSpeed(), 0.0f));
-				projectile->SetRotation(mSprite->GetRotation());
-				projectile->SetZOrder(50);
-				GetParent()->Add(projectile);*/
-				RocketProjectile* proj = dynamic_cast<RocketProjectile*>(mRocketBattery->GetProjectile().get());
-				printf("Aimpoint (%lf, %lf)", proj->GetAimpoint().x, proj->GetAimpoint().y);
+				if (mRocketBatteryList.size() > 0)
+				{
+					if (mFireSlot == mRocketBatteryList.size())
+						mFireSlot = 0;
 
-				auto rocketEvent = make_shared<FireProjectileEvent>(mRocketBattery,
-																	GetParent(),
-																	mSprite->GetPosition(),
-																	mSprite->GetRotation(),
-																	0.0f);
-				EventQueue::getInstance().Add(rocketEvent);
+					sf::Vector2f finalAimpoint(aimpointx, aimpointy);
+					sf::Vector2f initialAimpoint(aimpointx, aimpointy - 400.0f);
+
+					auto rocketEvent = make_shared<FireProjectileEvent>(mRocketBatteryList[mFireSlot],
+						GetParent(),
+						mSprite->GetPosition(),
+						initialAimpoint,
+						finalAimpoint,
+						0.0f);
+					EventQueue::getInstance().Add(rocketEvent);
+
+					mFireSlot++;
+				}
 				break;
 			}
 		}
 
-		void Player::FireProjectileWithDelay(int wpnType, float delay)
+		void Player::FireProjectileWithDelay(int wpnType, float aimpointx, float aimpointy, float delay)
 		{
 			switch (wpnType)
 			{
 			case WEAPON_TYPE_ROCKET:
-				RocketProjectile* proj = dynamic_cast<RocketProjectile*>(mRocketBattery->GetProjectile().get());
-				proj->SetAimpoint(1280, 200);
+				if (mRocketBatteryList.size() > 0)
+				{
+					if (mFireSlot == mRocketBatteryList.size())
+						mFireSlot = 0;
 
-				double deltax = proj->GetAimpoint().x - mSprite->GetPosition().x;
-				double deltay = proj->GetAimpoint().y - mSprite->GetPosition().y;
+					sf::Vector2f finalAimpoint(aimpointx, aimpointy);
+					sf::Vector2f initialAimpoint;
+					
+					if (mRocketBatteryList[mFireSlot]->GetRelativeLocation().y < 0)
+					{
+						initialAimpoint.x = aimpointx;
+						initialAimpoint.y = aimpointy - 400.0f;
+					}
+					else
+					{
+						initialAimpoint.x = aimpointx;
+						initialAimpoint.y = aimpointy + 400.0f;
+					}
 
-				double angle = Math::ToDegrees(atan2(deltay, deltax)) + 90;
 
-				//printf("Aimpoint (%lf, %lf)\n", proj->GetAimpoint().x, proj->GetAimpoint().y);
-				printf("Angle: %lf\n", angle);
+					sf::Vector2f position;
+					position.x = mSprite->GetPosition().x + mRocketBatteryList[mFireSlot]->GetRelativeLocation().x;
+					position.y = mSprite->GetPosition().y + mRocketBatteryList[mFireSlot]->GetRelativeLocation().y;
 
-				auto rocketEvent = make_shared<FireProjectileEvent>(mRocketBattery,
-					GetParent(),
-					mSprite->GetPosition(),
-					angle,
-					delay);
-				EventQueue::getInstance().Add(rocketEvent);
+					auto rocketEvent = make_shared<FireProjectileEvent>(mRocketBatteryList[mFireSlot],
+						GetParent(),
+						position,
+						initialAimpoint,
+						finalAimpoint,
+						delay);
+					EventQueue::getInstance().Add(rocketEvent);
+
+					mFireSlot++;
+				}
 				break;
 			}
+		}
+
+		void Player::SetAimpoint(float x, float y)
+		{
+			mAimpoint.x = x;
+			mAimpoint.y = y;
 		}
 
 		shared_ptr<Sprite> Player::GetSprite()

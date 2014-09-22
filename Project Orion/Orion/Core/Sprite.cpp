@@ -80,6 +80,8 @@ float Sprite::GetRotation()
 
 void Sprite::SetRotation(float angle)
 {
+	if (angle > 360.0f)
+		angle -= 360.0f;
 	mAngle = angle;
 }
 

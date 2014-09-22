@@ -166,6 +166,7 @@
     <ClCompile Include="Orion\Core\ScriptingDefs.cpp" />
     <ClCompile Include="Orion\Core\Sprite.cpp" />
     <ClCompile Include="Orion\Event\EventQueue.cpp" />
+    <ClCompile Include="Orion\Game\Enemy.cpp" />
     <ClCompile Include="Orion\Game\Game.cpp" />
     <ClCompile Include="Orion\Game\Player.cpp" />
     <ClCompile Include="Orion\Game\Weapon.cpp" />
@@ -190,10 +191,10 @@
     <ClInclude Include="Orion\Event\FireProjectileEvent.hpp" />
     <ClInclude Include="Orion\Event\GenericEvent.hpp" />
     <ClInclude Include="Orion\Factories\WeaponFactory.hpp" />
+    <ClInclude Include="Orion\Game\Enemy.hpp" />
     <ClInclude Include="Orion\Game\Game.hpp" />
     <ClInclude Include="Orion\Game\Player.hpp" />
     <ClInclude Include="Orion\Game\Projectile.hpp" />
-    <ClInclude Include="Orion\Game\RocketProjectile.hpp" />
     <ClInclude Include="Orion\Game\Weapon.hpp" />
     <ClInclude Include="Orion\Orion.hpp" />
     <ClInclude Include="Orion\Resources\ResourceHolder.hpp" />

@@ -17,12 +17,13 @@ namespace Orion
 		class FireProjectileEvent : public GenericEvent
 		{
 		public:
-			FireProjectileEvent(shared_ptr<Weapon> weapon, SceneNode* node, Vector2f position, float rotation, float delay)
+			FireProjectileEvent(shared_ptr<Weapon> weapon, SceneNode* node, Vector2f position, Vector2f initialAim, Vector2f finalAim, float delay)
 			{
 				mDrawNode = node;
 				mWeapon = weapon;
 				mPosition = position;
-				mRotation = rotation;
+				mFinalAim = finalAim;
+				mCurrAim = initialAim;
 				mTriggerTimeSec = EventQueue::getInstance().GetElapsed() + delay;
 			}
 
@@ -31,8 +32,11 @@ namespace Orion
 				auto projectile = mWeapon->GetProjectile()->Clone();
 				projectile->SetPosition(mPosition);
 				projectile->SetVelocity(sf::Vector2f(projectile->GetSpeed(), 0.0f));
-				projectile->SetRotation(mRotation);
+				projectile->SetRotation(0.0f);
 				projectile->SetZOrder(50);
+				projectile->SetCurrentAimpoint(mCurrAim);
+				projectile->SetFinalAimpoint(mFinalAim);
+				projectile->Fire();
 				mDrawNode->Add(projectile);
 			}
 
@@ -40,7 +44,8 @@ namespace Orion
 			shared_ptr<Weapon>	mWeapon;
 			SceneNode*			mDrawNode;
 			Vector2f			mPosition;
-			float				mRotation;
+			Vector2f			mFinalAim;
+			Vector2f			mCurrAim;
 		};
 	}
 }

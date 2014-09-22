@@ -24,6 +24,7 @@ public:
 private:
 	UIManager UserInterface;
 	shared_ptr<Player> mPlayer;
+	shared_ptr<Enemy> mEnemy;
 	//shared_ptr<Sprite> player;
 	shared_ptr<Scene> battleScene;
 

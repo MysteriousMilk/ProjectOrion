@@ -4,6 +4,7 @@
 #include "../Orion.hpp"
 
 // Define all scripting functions
-Player GetPlayer();
+Player	GetPlayer();
+Enemy	GetEnemy();
 
 #endif //_SCRIPTINGDEFS_HPP_

@@ -11,6 +11,7 @@
 #include "Game\Weapon.hpp"
 #include "Game\Game.hpp"
 #include "Game\Player.hpp"
+#include "Game\Enemy.hpp"
 #include "Factories\WeaponFactory.hpp"
 
 using namespace Orion::Game;
@@ -41,9 +42,19 @@ namespace Orion
 			mPlayer = player;
 		}
 
+		void RegisterEnemy(Enemy* enemy)
+		{
+			mEnemy = enemy;
+		}
+
 		Player* GetPlayer()
 		{
 			return mPlayer;
+		}
+
+		Enemy* GetEnemy()
+		{
+			return mEnemy;
 		}
 
 	private:
@@ -60,6 +71,7 @@ namespace Orion
 
 		std::shared_ptr<Orion::Game::Game> mCurrentGame;
 		Player* mPlayer;
+		Enemy* mEnemy;
 	};
 }
 

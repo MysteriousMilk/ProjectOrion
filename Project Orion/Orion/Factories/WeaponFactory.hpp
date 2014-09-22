@@ -51,12 +51,15 @@ namespace Orion
 							switch (weapon->GetId())
 							{
 								case WEAPON_TYPE_ROCKET:
-									weapon->SetProjectile(make_shared<RocketProjectile>(query.getIntField(0),
+									weapon->SetProjectile(make_shared<Projectile>(query.getIntField(0),
 										query.fieldValue(1),
 										query.fieldValue(2),
 										query.fieldValue(3),
 										query.getIntField(4),
-										query.getFloatField(5)));
+										query.getFloatField(5),
+										400.0f,
+										sf::Vector2f(0,0),
+										sf::Vector2f(0,0)));
 									break;
 								default:
 									weapon->SetProjectile(make_shared<Projectile>(query.getIntField(0),
@@ -64,7 +67,10 @@ namespace Orion
 										query.fieldValue(2),
 										query.fieldValue(3),
 										query.getIntField(4),
-										query.getFloatField(5)));
+										query.getFloatField(5),
+										500.0f,
+										sf::Vector2f(0, 0),
+										sf::Vector2f(0, 0)));
 									break;
 							}
 							break;

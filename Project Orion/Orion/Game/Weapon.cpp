@@ -40,5 +40,16 @@ namespace Orion
 		{
 			mProjectile = projectile;
 		}
+
+		sf::Vector2f& Weapon::GetRelativeLocation()
+		{
+			return mRelLocation;
+		}
+
+		void Weapon::SetRelativeLocation(const sf::Vector2f& loc)
+		{
+			mRelLocation.x = loc.x;
+			mRelLocation.y = loc.y;
+		}
 	}
 }

@@ -34,12 +34,12 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 	planet->SetOrigin(sf::Vector2f(planet->GetWidth() / 2.0f, planet->GetHeight() / 2.0f));
 	planet->SetZOrder(1);
 
-	auto enemy = make_shared<Orion::Sprite>("enemy");
-	enemy->SetOrigin(sf::Vector2f(enemy->GetWidth() / 2.0f, enemy->GetHeight() / 2.0f));
-	enemy->SetPosition(sf::Vector2f(resolution.x - 175.0f, resolution.y / 2.0f));
-	enemy->SetRotation(-90.0f);
-	enemy->SetScale(0.8f, 0.8f);
-	enemy->SetZOrder(2);
+	mEnemy = make_shared<Enemy>("enemy");
+	mEnemy->GetSprite()->SetOrigin(sf::Vector2f(mEnemy->GetSprite()->GetWidth() / 2.0f, mEnemy->GetSprite()->GetHeight() / 2.0f));
+	mEnemy->GetSprite()->SetPosition(sf::Vector2f(resolution.x - 175.0f, resolution.y / 2.0f));
+	mEnemy->GetSprite()->SetRotation(-90.0f);
+	mEnemy->GetSprite()->SetScale(0.8f, 0.8f);
+	mEnemy->SetZOrder(2);
 
 	mPlayer = make_shared<Player>("player");
 	mPlayer->GetSprite()->SetOrigin(sf::Vector2f(mPlayer->GetSprite()->GetWidth() / 2.0f,
@@ -51,7 +51,7 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 	auto layer = make_shared<Layer>();
 	layer->Add(background);
 	layer->Add(planet);
-	layer->Add(enemy);
+	layer->Add(mEnemy);
 	layer->Add(mPlayer);
 
 	battleScene = make_shared<Scene>();
@@ -70,9 +70,11 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 	elapsed = 0.0f;
 	timeSinceLast = 0.0f;
 
+	// Rocket Battery 1
 	Orion::Factories::WeaponFactory weaponFactory;
 	auto weapon = weaponFactory.GetWeaponById(1);
-	mPlayer->SetWeapon(weapon, WEAPON_TYPE_ROCKET);
+	weapon->SetRelativeLocation(sf::Vector2f(0.0f, -100.0f));
+	mPlayer->AddWeapon(weapon, WEAPON_TYPE_ROCKET);
 
 	printf("Weapon(%d, %s, %d)\n", weapon->GetId(), weapon->GetName().c_str(), weapon->GetMinimumLevel());
 	printf("\t->Projectile(%d, %s, %s, %s, %d, %lf)\n",
@@ -83,7 +85,23 @@ OrionGame::OrionGame(const sf::Vector2i& resolution) : Game(resolution)
 		weapon->GetProjectile()->GetWeaponId(),
 		weapon->GetProjectile()->GetSpeed());
 
+	// Rocket Battery 2
+	auto weapon2 = weaponFactory.GetWeaponById(1);
+	weapon2->SetRelativeLocation(sf::Vector2f(0.0f, 100.0f));
+	mPlayer->AddWeapon(weapon2, WEAPON_TYPE_ROCKET);
+
+	printf("Weapon(%d, %s, %d)\n", weapon2->GetId(), weapon2->GetName().c_str(), weapon2->GetMinimumLevel());
+	printf("\t->Projectile(%d, %s, %s, %s, %d, %lf)\n",
+		weapon2->GetProjectile()->GetId(),
+		weapon2->GetProjectile()->GetName().c_str(),
+		weapon2->GetProjectile()->GetFilename().c_str(),
+		weapon2->GetProjectile()->GetReference().c_str(),
+		weapon2->GetProjectile()->GetWeaponId(),
+		weapon2->GetProjectile()->GetSpeed());
+
+
 	Orion::Engine::getInstance().RegisterPlayer(mPlayer.get());
+	Orion::Engine::getInstance().RegisterEnemy(mEnemy.get());
 }
 
 void OrionGame::ProcessEvents()
@@ -115,19 +133,6 @@ void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
 	{
 		if (!isPressed)
 		{
-			//auto projectile = make_shared<Projectile>("plasma");
-			//projectile->SetOrigin(sf::Vector2f(projectile->GetWidth() / 2, projectile->GetHeight() / 2));
-			//projectile->SetPosition(sf::Vector2f(mPlayer->GetSprite()->GetPosition().x + (mPlayer->GetSprite()->GetWidth() / 2) - 50,
-			//	mPlayer->GetSprite()->GetPosition().y));
-			//projectile->SetRotation(mPlayer->GetSprite()->GetRotation());
-			//projectile->SetScale(0.5f, 0.5f);
-			//projectile->SetVelocity(sf::Vector2f(1000.0f, 0.0f));
-			//projectile->SetColor(sf::Color(255, 255, 255, 200));
-			//projectile->SetZOrder(50);
-			//battleScene->Add(projectile);
-			//mPlayer->FireProjectile(WEAPON_TYPE_ROCKET);
-			//Script.Execute("resources/scripts/orion_fire_rockets.lua");
-
 			isFiring = true;
 		}
 	}
@@ -136,40 +141,7 @@ void OrionGame::Input(sf::Keyboard::Key key, bool isPressed)
 void OrionGame::Update(sf::Time elapsedTime)
 {
 	timeSinceLast = elapsedTime.asMilliseconds() - timeSinceLast;
-	/*if (isFiring)
-	{
-		elapsed += timeSinceLast;
-		if (rocketCount == 0)
-		{
-			auto projectile = make_shared<Projectile>("rocket");
-			projectile->SetOrigin(sf::Vector2f(projectile->GetWidth() / 2.0f, projectile->GetHeight() / 2.0f));
-			projectile->SetPosition(sf::Vector2f(player->GetPosition().x + (player->GetWidth() / 2) - 250, player->GetPosition().y + 8));
-			projectile->SetVelocity(sf::Vector2f(100.0f, 0.0f));
-			projectile->SetRotation(player->GetRotation());
-			projectile->SetZOrder(50);
-			battleScene->Add(projectile);
 
-			rocketCount++;
-		}
-		else
-		{
-			if (rocketCount == 1 && elapsed > 500.0f)
-			{
-				auto projectile = make_shared<Projectile>("rocket");
-				projectile->SetOrigin(sf::Vector2f(projectile->GetWidth() / 2.0f, projectile->GetHeight() / 2.0f));
-				projectile->SetPosition(sf::Vector2f(player->GetPosition().x + (player->GetWidth() / 2) - 250, player->GetPosition().y + 8));
-				projectile->SetVelocity(sf::Vector2f(100.0f, 0.0f));
-				projectile->SetRotation(player->GetRotation());
-				projectile->SetZOrder(50);
-				battleScene->Add(projectile);
-
-				rocketCount = 0;
-				isFiring = false;
-				elapsed = 0.0f;
-			}
-		}
-		printf("%lf\n", elapsed);
-	}*/
 	Orion::Event::EventQueue::getInstance().Update(elapsedTime);
 	battleScene->Update(elapsedTime);
 	UserInterface.Update();

@@ -45,10 +45,22 @@ namespace Orion
 					.def("GetWeaponId", &Player::GetWeaponId)
 					.def("FireProjectile", &Player::FireProjectile)
 					.def("FireProjectileWithDelay", &Player::FireProjectileWithDelay)
+					.def("SetAimpoint", &Player::SetAimpoint)
+			];
+
+			// add enemy class
+			luabind::module(mLuaState)[
+				luabind::class_<Enemy>("Enemy")
+					.def("GetX", &Enemy::GetX)
+					.def("GetY", &Enemy::GetY)
 			];
 
 			luabind::module(mLuaState)[
 				luabind::def("GetPlayer", GetPlayer)
+			];
+
+			luabind::module(mLuaState)[
+				luabind::def("GetEnemy", GetEnemy)
 			];
 		}
 
